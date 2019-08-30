@@ -1,0 +1,36 @@
+﻿using LottoData.Lib.DataTypes;
+using LottoData.Lib.Factories;
+using LottoData.Lib.Interfaces.DataTypes;
+using LottoData.Lib.Interfaces.Factories;
+using LottoData.Lib.Interfaces.Features;
+
+namespace LottoData.Lib.Features
+{
+    public class PostionVortex : ISingleRowFeature
+    {
+        public string FeatureName
+        {
+            get
+            {
+                return FeatureNames.PositionSumVortex;
+            }
+        }
+        private readonly IFeaturesFactory _featuresManager;
+
+
+
+        public PostionVortex( IFeaturesFactory featuresManager)
+        {
+            _featuresManager = featuresManager;
+            
+        }
+        public PostionVortex() : this( new FeaturesFactory())
+        {
+
+        }
+        public IData Extract(IData row)
+        {
+            return new FeatureData<long>(FeatureName, _featuresManager.VortexNumber(((IDraw)row).PhysicalPosition));
+        }
+    }
+}
