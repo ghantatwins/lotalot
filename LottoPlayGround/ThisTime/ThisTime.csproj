@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AvlTree\AvlTree.csproj" />
     <ProjectReference Include="..\LottoData.Lib\LottoData.Lib.csproj" />
   </ItemGroup>
 
